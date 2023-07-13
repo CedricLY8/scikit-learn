@@ -1872,6 +1872,50 @@ class ShuffleSplit(BaseShuffleSplit):
             yield ind_train, ind_test
 
 
+class TabularTimeSeriesCrossValidation():
+    
+'''
+Tabular time series cross-validation is a specialized technique used 
+in machine learning and data analysis to evaluate the performance of 
+predictive models on time series data organized in a tabular format. 
+Unlike traditional cross-validation methods that randomly split the 
+data into training and testing sets, tabular time series cross-validation 
+takes into account the temporal ordering of the data.
+
+The importance of tabular time series cross-validation arises from the 
+unique characteristics of time series data, where the order and timing 
+of observations are crucial. 
+In many real-world applications, such as finance, economics, and weather 
+forecasting, the historical patterns and trends in the data play a 
+significant role in making accurate predictions for the future. Traditional 
+cross-validation methods may not be suitable for evaluating time series models 
+as they can lead to data leakage and unrealistic performance estimates. 
+
+A review of the state of the art enabled us to discover two existing modules, 
+TimeSeriesSplit from scikit-learn and GroupTimeSeries from mlxtend, 
+which deal with the subject of tabular time series cross validation. 
+However, these two modules lack certain features. This is why we want 
+to create a new library contained in sklearn with all the useful features 
+to perform tabular time series cross validation. 
+
+Overall description of the requested product
+Product requirements
+The class must take the following inputs :
+• a dataframe with a column used as a time unit
+• nsplit which is the number of splits wanted in the study. nsplit must be ≥ 2.
+• cross section methodology: rolling window, expanding window, combinatorial, walk-
+forward, blocked cross validation, ...
+• purge size: number of time unit to delete in the training set whose labels overlapped
+in time with those labels included in the testing set.
+• embargo: number of time unit you should eliminate from the training set obser-
+vations that immediately follow an observation in the testing set. This concept is
+represented on Figure 6b.
+• a boolean for the shuffle in the post-train-validation split.
+
+
+'''
+
+
 class GroupShuffleSplit(GroupsConsumerMixin, ShuffleSplit):
     """Shuffle-Group(s)-Out cross-validation iterator
 
